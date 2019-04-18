@@ -9,14 +9,11 @@ import {
   findByTime
 } from '../utils/util'
 
-import store from '../store'
+// import store from '../store'
 
 const SCREEN_WIDTH = window.innerWidth
 const SCREEN_HEIGHT = window.innerHeight
 const MAX_POINTS = 5000
-
-const timerDOM = document.getElementById('timer')
-const contentDOM = document.getElementById('content')
 
 /**
  *
@@ -26,6 +23,7 @@ const contentDOM = document.getElementById('content')
  */
 class App3D {
   constructor (debug = false) {
+    window.b = this
     this.debug = debug
     this.pointsPool = []
     this.lastPointsNum = 0
@@ -148,11 +146,13 @@ class App3D {
       this.pointsPool[i].visible = false
     }
     // 查找
-    const result = Object.values(store.getters.getData)
-      .map(item => findByTime(item, this.params.timestamp))
+    // const result = Object.values(store.getters.getData)
+    const result = Object.values(window.data || {})
+      .map(item => {
+        return findByTime(item, this.params.timestamp)
+      })
       .filter(item => item)
     this.lastPointsNum = result.length
-    // console.log(result.length);
     // 绘制
     result.forEach((item, index) => {
       this.pointsPool[index].position.fromArray(this.getPosition(item))
@@ -179,7 +179,12 @@ class App3D {
     }
 
     let { timestamp, auto, ratio } = this.params
-    this.drawPoints()
+    if (window.data) {
+      this.drawPoints()
+    }
+
+    const timerDOM = document.getElementById('timer')
+    const contentDOM = document.getElementById('content')
 
     timerDOM.textContent = `
       ${Math.floor(timestamp / 3600)}

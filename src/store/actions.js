@@ -1,6 +1,10 @@
 export default {
   async loadJSONData ({ state, commit }) {
-    const json = await fetch('public/json/log-day3.json')
+    const json = await fetch('public/json/log-day2.json', {
+      headers: {
+        'Cache-Control': 'public'
+      }
+    })
     const data = await json.json()
 
     commit('setLoaded', false)
@@ -19,7 +23,9 @@ export default {
       i++
     }
 
-    commit('setData', global)
+    window.data = global
+    window.originData = data
+    // commit('setData', global)
   },
   loadCSVData ({ state, commit }) {
     fetch('public/csv/log-day1.csv')

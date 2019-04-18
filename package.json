@@ -7,7 +7,10 @@
     "start": "webpack-dev-server --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "analyse": "webpack --config config/webpack.analyse.js"
+    "analyse": "webpack --config config/webpack.analyse.js",
+    "lint": "eslint --ext .js,.vue ./src",
+    "lint:fix": "eslint --fix --ext .js,.vue ./src",
+    "csv2json": "node ./src/utils/csv2json.js"
   },
   "author": "",
   "license": "ISC",
