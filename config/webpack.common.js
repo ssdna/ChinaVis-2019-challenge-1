@@ -31,6 +31,20 @@ module.exports = {
           }
         }
       },
+      // 这里采用imports-loader引用three/examples/js下的内容
+      // 因为three/examples/jsm下的模块尚不全面
+      {
+        test: /three\/examples\/js/,
+        use: 'imports-loader?THREE=three'
+      },
+      {
+        test: /\.css$/,
+        use: [{
+          loader: 'style-loader' // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader' // translates CSS into CommonJS
+        }]
+      },
       {
         test: /\.less$/,
         use: [{
@@ -54,6 +68,10 @@ module.exports = {
       {
         from: resolve(__dirname, '../public'),
         to: resolve(__dirname, '../dist/public')
+      },
+      {
+        from: resolve(__dirname, '../node_modules/three/build/three.min.js'),
+        to: resolve(__dirname, '../dist')
       }
     ])
   ],
@@ -61,19 +79,16 @@ module.exports = {
     filename: '[name].bundle.js',
     path: resolve(__dirname, '../dist')
   },
-  // externals: {
-  //     three: 'three'
-  // },
+  externals: {
+    three: 'THREE'
+  },
   optimization: {
     splitChunks: {
       cacheGroups: {
         vendor: {
           // test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-          test: /[\\/]node_modules[\\/](three)[\\/]/,
-          name: 'three',
-          chunks: 'all',
-          // minSize: 30000,
-          maxSize: 0
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all'
         }
       }
     }

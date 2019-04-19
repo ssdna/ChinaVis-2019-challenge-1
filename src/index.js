@@ -1,11 +1,11 @@
 import Vue from 'vue'
-
-// import Application from './js/Application'
-
+import 'reset-css'
 import App from './components/App.vue'
 import store from './store'
 // import './js/1'
 // import './js/2'
+
+window.start = performance.now()
 
 const v = new Vue({
   store,
@@ -15,4 +15,5 @@ const v = new Vue({
 v.$mount('#app')
 window.v = v
 
-store.dispatch('loadJSONData')
+// store.dispatch('loadJSONData')
+store.dispatch('loadCSVData', 'log-day1.csv')

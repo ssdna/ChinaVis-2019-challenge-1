@@ -12,6 +12,11 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   state: {
     loading: true,
+    lastPointsNum: 0,
+    timestamp: 24000,
+    currentLog: {},
+    auto: true,
+    ratio: 24,
     data: {}
   },
   getters,
