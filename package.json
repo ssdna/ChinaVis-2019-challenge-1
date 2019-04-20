@@ -16,6 +16,7 @@
   "author": "NaOH",
   "license": "GPL",
   "dependencies": {
+    "@antv/g2": "^3.5.3",
     "reset-css": "^4.0.1",
     "three": "^0.103.0",
     "vue": "^2.6.10",

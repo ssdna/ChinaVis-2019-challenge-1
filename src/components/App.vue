@@ -4,6 +4,16 @@
       id="app3D-container"
       ref="app3D"
     />
+
+    <venue-chart
+      class="chart"
+      position="room-main"
+    />
+    <!-- <venue-chart position="room-A" />
+    <venue-chart position="room-B" />
+    <venue-chart position="room-C" />
+    <venue-chart position="room-D" /> -->
+
     <div class="status-bar">
       <span id="timer">{{ timeString }}</span>
       <span id="content">{{ lastPointsNumString }}</span>
@@ -19,8 +29,13 @@
 
 <script>
 import App3D from '../js/App3D'
+import VenueChart from './VenueChart.vue'
+import { timeFormatter } from '../utils/util'
 
 export default {
+  components: {
+    'venue-chart': VenueChart
+  },
   data () {
     return {
     }
@@ -31,18 +46,14 @@ export default {
     },
     timeString () {
       const timestamp = this.$store.getters.getState('timestamp')
-      return `
-        ${Math.floor(timestamp / 3600)}
-        :
-        ${Math.floor(timestamp % 3600 / 60)}
-        :
-        ${timestamp % 60}
-      `.trim()
+      return timeFormatter(timestamp)
     },
     lastPointsNumString () {
       const lastPointsNum = this.$store.getters.getState('lastPointsNum')
+      const currentLog = this.$store.getters.getState('currentLog')
       return `
         当前总人数：${lastPointsNum}
+        当前记录：${JSON.stringify(currentLog)}
       `.trim()
     }
   },
@@ -71,8 +82,12 @@ export default {
   position: absolute;
   color: blue;
   font-size: 32px;
-  width: 1080px;
-  height: 720px;
+  width: 1000px;
+  height: 600px;
+}
+.chart {
+  position: absolute;
+  top: 600px;
 }
 .status-bar {
   position: absolute;
@@ -84,7 +99,7 @@ export default {
   }
   #content {
     display: inline-block;
-    width: 400px;
+    width: 800px;
     color: green;
   }
 }

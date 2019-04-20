@@ -16,8 +16,8 @@ import store from '../store'
 
 const OrbitControls = THREE.OrbitControls
 
-const SCREEN_WIDTH = 1080
-const SCREEN_HEIGHT = 720
+const SCREEN_WIDTH = 1000
+const SCREEN_HEIGHT = 600
 const MAX_POINTS = 5000
 
 window.drawCurve = drawCurve
@@ -208,12 +208,7 @@ class App3D {
       this.pointsPool[i].visible = false
     }
     // 查找
-    // const result = Object.values(store.getters.getData)
-    const result = Object.values(window.data || {})
-      .map(item => {
-        return findByTime(item, this.params.timestamp)
-      })
-      .filter(item => item)
+    const result = findByTime(window.data || {}, this.params.timestamp)
     store.dispatch('setState', {
       key: 'lastPointsNum',
       value: result.length
