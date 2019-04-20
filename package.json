@@ -10,15 +10,12 @@
     "analyse": "webpack --config config/webpack.analyse.js",
     "lint": "eslint --ext .js,.vue ./src ./config",
     "lint:fix": "eslint --fix --ext .js,.vue ./src ./config",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "csv2json": "node ./src/utils/csv2json.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "NaOH",
   "license": "GPL",
   "dependencies": {
-    "gsap": "^2.1.2",
     "reset-css": "^4.0.1",
     "three": "^0.103.0",
     "vue": "^2.6.10",
@@ -42,7 +39,6 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^5.2.2",
-    "gh-pages": "^2.0.1",
     "html-webpack-plugin": "^3.2.0",
     "imports-loader": "^0.8.0",
     "less": "^3.9.0",

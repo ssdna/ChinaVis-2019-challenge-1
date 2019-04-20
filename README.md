@@ -1,8 +1,10 @@
 # ChinaVis-2019-challenge-1
 
-[数据可视分析挑战赛 挑战1](http://www.chinavis.org/2019/challenge.html)
+[ChinaVis 2019 数据可视分析挑战赛 挑战1](http://www.chinavis.org/2019/challenge.html)
 
-在线预览[地址](https://ssdna.github.io/ChinaVis-2019-challenge-1/dist)
+## 解决方案
+
+本项目使用master分支的docs文件夹作为GitHub Pages。在线预览[地址](https://ssdna.github.io/ChinaVis-2019-challenge-1)
 
 ## 题目描述
 
