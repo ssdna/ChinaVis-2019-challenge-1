@@ -31,7 +31,7 @@ window.drawCurve = drawCurve
 class App3D {
   constructor (debug = false) {
     window.b = this
-    let { timestamp, auto, ratio } = store.getters.all
+    let { timestamp, ratio } = store.getters.all
 
     this.debug = debug
     this.pointsPool = []
@@ -46,9 +46,10 @@ class App3D {
       timestamp,
       ratio,
       auto () {
+        const autoValue = store.getters.getState('auto')
         store.dispatch('setState', {
           key: 'auto',
-          value: !auto
+          value: !autoValue
         })
       }
     }
@@ -116,7 +117,7 @@ class App3D {
       this._gui.add(this.params, 'timestamp', 20000, 70000).step(10)
       this._gui.add(this.params, 'ratio', 1, 60).step(1)
       this._gui.add(this.params, 'auto')
-      this._gui.open()
+      this._gui.close()
       // Stats
       this._stats = new Stats()
       // document.body.appendChild(this._stats.dom)
@@ -241,9 +242,14 @@ class App3D {
   animate () {
     requestAnimationFrame(this.animate.bind(this))
 
-    this._raycaster.setFromCamera(this._mouse, this._camera)
-    const intersections = this._raycaster.intersectObjects(this.pointsPool)
-    const intersection = (intersections.length) > 0 ? intersections[ 0 ] : null
+    let intersection = null
+    // 去掉初始情况
+    if (this._mouse.x !== 0 && (this._mouse.y !== 0)) {
+      this._raycaster.setFromCamera(this._mouse, this._camera)
+      const intersections = this._raycaster.intersectObjects(this.pointsPool)
+      intersection = (intersections.length) > 0 ? intersections[ 0 ] : null
+    }
+
     if (intersection !== null) {
       this._labelPoint.position.copy(intersection.point)
       const log = intersection.object.userData.log

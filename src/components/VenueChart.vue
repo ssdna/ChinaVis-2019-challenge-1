@@ -12,20 +12,21 @@ import {
   findByTime
 } from '../utils/util'
 import {
+  POSITIONS,
   checkPosition
 } from '../utils/position'
 
-const ROOM_ARRAY = ['room-main', 'room-A', 'room-B', 'room-C', 'room-D']
+const ROOM_ARRAY = Object.values(POSITIONS)
 
 export default {
   props: {
     position: {
       type: String,
-      required: true,
-      default: 'room-main',
-      validator: function (value) {
-        return ROOM_ARRAY.indexOf(value) !== -1
-      }
+      default: 'room-main'
+      // required: false,
+      // validator: function (value) {
+      //   return ROOM_ARRAY.indexOf(value) !== -1
+      // }
     }
   },
   data () {
@@ -48,8 +49,9 @@ export default {
   mounted () {
     this._chart = new G2.Chart({
       container: this.$refs.chart,
-      width: 600,
-      height: 300
+      width: 800,
+      height: 300,
+      padding: { top: 20, right: '20%', bottom: 20, left: 70 }
     })
   },
   methods: {
@@ -87,12 +89,6 @@ export default {
     renderer () {
       this._data = this.getData()
       this._chart.source(this._data)
-      this._chart.axis('time', {
-        label: {
-          formatter: timeFormatter
-        }
-      })
-      this._chart.line().position('time*count').color('type')
       this._chart.tooltip({
         useHtml: true,
         shared: true,
@@ -123,6 +119,22 @@ export default {
           `
         }
       })
+      this._chart.legend({
+        position: 'right',
+        selectedMode: 'single'
+      })
+      this._chart.axis('time', {
+        label: {
+          formatter: timeFormatter
+        }
+      })
+      this._chart.axis('count', {
+        title: '人数'
+      })
+      this._chart.scale('count', {
+        alias: '人数(个)'
+      })
+      this._chart.line().position('time*count').color('type')
       this._chart.render()
     }
   }

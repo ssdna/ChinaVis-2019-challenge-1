@@ -5,10 +5,9 @@
       ref="app3D"
     />
 
-    <venue-chart
-      class="chart"
-      position="room-main"
-    />
+    <venue-chart class="chart venue-chart" />
+    <time-range-chart class="chart time-range-chart" />
+
     <!-- <venue-chart position="room-A" />
     <venue-chart position="room-B" />
     <venue-chart position="room-C" />
@@ -30,11 +29,13 @@
 <script>
 import App3D from '../js/App3D'
 import VenueChart from './VenueChart.vue'
+import TimeRangeChart from './TimeRangeChart.vue'
 import { timeFormatter } from '../utils/util'
 
 export default {
   components: {
-    'venue-chart': VenueChart
+    'venue-chart': VenueChart,
+    'time-range-chart': TimeRangeChart
   },
   data () {
     return {
@@ -87,7 +88,13 @@ export default {
 }
 .chart {
   position: absolute;
+}
+.venue-chart {
   top: 600px;
+}
+.time-range-chart {
+  top: 0px;
+  left: 1000px
 }
 .status-bar {
   position: absolute;
