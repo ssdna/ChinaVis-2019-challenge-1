@@ -15,7 +15,7 @@ export default new Vuex.Store({
     lastPointsNum: 0,
     timestamp: 24000,
     currentLog: {},
-    auto: true,
+    auto: false,
     ratio: 24,
     data: {}
   },

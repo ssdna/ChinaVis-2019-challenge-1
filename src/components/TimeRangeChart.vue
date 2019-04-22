@@ -49,18 +49,21 @@ export default {
           time: [ min, max ]
         }
       }).sort((a, b) => {
-        // const [ aMin, aMax ] = a.time
-        // const [ bMin, bMax ] = b.time
-        // return (bMax - bMin) - (aMax - aMin)
         const [ aMin, aMax ] = a.time
         const [ bMin, bMax ] = b.time
-        if (aMin - bMin === 0) {
-          return aMax - bMax
-        } else {
-          return aMin - bMin
+        return (bMax - bMin) - (aMax - aMin)
+        // const [ aMin, aMax ] = a.time
+        // const [ bMin, bMax ] = b.time
+        // if (aMin - bMin === 0) {
+        //   return aMax - bMax
+        // } else {
+        //   return aMin - bMin
+        // }
+      }).map((item, index) => {
+        return {
+          index,
+          ...item
         }
-      }).map(item => {
-        return item
       })
       // .slice(0, 1000)
       return data
@@ -68,18 +71,69 @@ export default {
     renderer () {
       this._data = this.getData()
       this._chart.source(this._data)
-      this._chart.axis('min', {
+      this._chart.axis('time', {
+        position: 'left',
         label: {
           formatter: timeFormatter
         }
       })
-      // this._chart.axis('count', {
-      //   title: '人数'
+      this._chart.scale('time', {
+        alias: '时间',
+        min: 24000,
+        max: 62000
+      })
+      this._chart.axis('index', false)
+      // 翻转坐标轴
+      this._chart.coord().transpose()
+      this._chart.legend(false)
+
+      this._chart.tooltip({
+        useHtml: true,
+        shared: true,
+        htmlContent: function (title, items) {
+          const data = items[0].point._origin
+
+          function mapItems (items) {
+            const itemTpl = `
+              <li data-index={index}>
+                <span style="background-color:{color};width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;"></span>
+                {name}<span class="g2-tooltip-value">{value}</span>
+              </li>
+            `
+            let html = ''
+            for (let i = 0; i < items.length; i++) {
+              const item = items[i]
+              html += itemTpl.replace('{index}', i)
+                .replace('{color}', item.color)
+                .replace('{name}', item.name)
+                .replace('{value}', `${timeFormatter(data.min)}-${timeFormatter(data.max)}`)
+            }
+            return html
+          }
+
+          return `
+            <div class="g2-tooltip">
+              <div class="g2-tooltip-title" style="margin-bottom: 4px;">id: ${data.id}</div>
+              <ul class="g2-tooltip-list">${mapItems(items)}</ul>
+            </div>
+          `
+        }
+      })
+
+      this._chart.on('tooltip:change', ev => {
+        // const data = ev.items[0].point._origin
+        // console.log(data, ev)
+        // const item = ev.items[0] // 获取tooltip要显示的内容
+        // item.value = '格式化-' + (item.value * 100).toFixed(2) + '%'
+      })
+      // this._chart.on('mousemove', (ev) => {
+      //   const records = this._chart.getSnapRecords(ev)
+      //   if (G2.Util.isArray(records) && records.length) {
+      //     const data = records[0]._origin
+      //     console.log(data)
+      //   }
       // })
-      // this._chart.scale('count', {
-      //   alias: '人数(个)'
-      // })
-      this._chart.area().position('id*time')
+      this._chart.interval().position('index*time')
       // this._chart.line().position('id*min')
       this._chart.render()
     }

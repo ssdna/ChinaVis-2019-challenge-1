@@ -51,7 +51,7 @@ export default {
       container: this.$refs.chart,
       width: 800,
       height: 300,
-      padding: { top: 20, right: '20%', bottom: 20, left: 70 }
+      padding: { top: 40, right: '20%', bottom: 20, left: 70 }
     })
   },
   methods: {
@@ -129,7 +129,9 @@ export default {
         }
       })
       this._chart.axis('count', {
-        title: '人数'
+        title: {
+          position: 'end'
+        }
       })
       this._chart.scale('count', {
         alias: '人数(个)'
