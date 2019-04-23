@@ -50,7 +50,7 @@ export default {
     this._chart = new G2.Chart({
       container: this.$refs.chart,
       width: 800,
-      height: 300,
+      height: 320,
       padding: { top: 40, right: '20%', bottom: 20, left: 70 }
     })
   },
@@ -136,6 +136,10 @@ export default {
       this._chart.scale('count', {
         alias: '人数(个)'
       })
+      // 初始时只展示 berlin 的数据
+      this._chart.filter('type', val => {
+        return val === ROOM_ARRAY[0]
+      })
       this._chart.line().position('time*count').color('type')
       this._chart.render()
     }
@@ -144,30 +148,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-</style>
-
-<style>
-.g2-tooltip {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 3px;
-  color: rgb(87, 87, 87);
-  font-size: 12px;
-  line-height: 20px;
-  padding: 10px 10px 6px 10px;
-  box-shadow: 0px 0px 10px #aeaeae;
-  pointer-events: none;
-}
-
-.g2-tooltip-list {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.g2-tooltip-value {
-  margin-left: 30px;
-  display: inline;
-  float: right;
-}
 </style>

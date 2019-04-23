@@ -5,13 +5,9 @@
       ref="app3D"
     />
 
-    <venue-chart class="chart venue-chart" />
+    <venue-person-chart class="chart venue-person-chart" />
+    <venue-time-chart class="chart venue-time-chart" />
     <time-range-chart class="chart time-range-chart" />
-
-    <!-- <venue-chart position="room-A" />
-    <venue-chart position="room-B" />
-    <venue-chart position="room-C" />
-    <venue-chart position="room-D" /> -->
 
     <div class="status-bar">
       <span id="timer">{{ timeString }}</span>
@@ -28,13 +24,15 @@
 
 <script>
 import App3D from '../js/App3D'
-import VenueChart from './VenueChart.vue'
+import VenuePersonChart from './VenuePersonChart.vue'
+import VenueTimeChart from './VenueTimeChart.vue'
 import TimeRangeChart from './TimeRangeChart.vue'
 import { timeFormatter } from '../utils/util'
 
 export default {
   components: {
-    'venue-chart': VenueChart,
+    'venue-person-chart': VenuePersonChart,
+    'venue-time-chart': VenueTimeChart,
     'time-range-chart': TimeRangeChart
   },
   data () {
@@ -84,13 +82,17 @@ export default {
   color: blue;
   font-size: 32px;
   width: 1000px;
-  height: 600px;
+  height: 580px;
 }
 .chart {
   position: absolute;
 }
-.venue-chart {
-  top: 600px;
+.venue-person-chart {
+  top: 580px;
+}
+.venue-time-chart {
+  top: 580px;
+  left: 800px;
 }
 .time-range-chart {
   top: 0px;
@@ -128,4 +130,8 @@ export default {
   background: rgba( 0, 0, 0, .6 );
   transition: transform 100ms;
 }
+</style>
+
+<style>
+@import '../css/g2_custom.css';
 </style>

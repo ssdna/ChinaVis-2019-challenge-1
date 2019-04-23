@@ -1,0 +1,30 @@
+.g2-tooltip {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 3px;
+  color: rgb(87, 87, 87);
+  font-size: 12px;
+  line-height: 20px;
+  padding: 10px 0px 6px 10px;
+  box-shadow: 0px 0px 10px #aeaeae;
+  pointer-events: none;
+}
+
+.g2-tooltip-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 300px
+}
+
+.g2-tooltip-list li{
+  width: calc(50% - 10px);
+  padding-right: 10px;
+  float: left;
+}
+
+.g2-tooltip-value {
+  margin-left: 30px;
+  display: inline;
+  float: right;
+}

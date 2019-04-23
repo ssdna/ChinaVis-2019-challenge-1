@@ -93,3 +93,4 @@ day1:
 - 滑块 （http://antv.alipay.com/zh-cn/g2/3.x/demo/line/line-rain-and-flow.html）
 - g2图形上的打点
 - 3D延迟线 （http://antv.alipay.com/zh-cn/l7/1.x/demo/gallery/taxi.html）
+- 各个图表与3D可视化图之间的交互

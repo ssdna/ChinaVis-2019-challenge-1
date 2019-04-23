@@ -113,7 +113,7 @@ export default {
 
           return `
             <div class="g2-tooltip">
-              <div class="g2-tooltip-title" style="margin-bottom: 4px;">id: ${data.id}</div>
+              <div class="g2-tooltip-title" style="margin-bottom: 4px;">人员ID: ${data.id}</div>
               <ul class="g2-tooltip-list">${mapItems(items)}</ul>
             </div>
           `
@@ -142,30 +142,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-</style>
-
-<style>
-.g2-tooltip {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 3px;
-  color: rgb(87, 87, 87);
-  font-size: 12px;
-  line-height: 20px;
-  padding: 10px 10px 6px 10px;
-  box-shadow: 0px 0px 10px #aeaeae;
-  pointer-events: none;
-}
-
-.g2-tooltip-list {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.g2-tooltip-value {
-  margin-left: 30px;
-  display: inline;
-  float: right;
-}
 </style>
