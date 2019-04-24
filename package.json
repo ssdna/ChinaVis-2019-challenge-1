@@ -16,7 +16,10 @@
   "author": "NaOH",
   "license": "GPL",
   "dependencies": {
+    "@antv/data-set": "^0.10.2",
     "@antv/g2": "^3.5.3",
+    "@antv/g2-plugin-slider": "^2.1.1",
+    "d3": "^5.9.2",
     "reset-css": "^4.0.1",
     "three": "^0.103.0",
     "vue": "^2.6.10",
@@ -32,7 +35,6 @@
     "clean-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
-    "d3": "^5.9.2",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-loader": "^2.1.2",

@@ -67,17 +67,17 @@ module.exports = {
     new CopyPlugin([
       {
         from: resolve(__dirname, '../public'),
-        to: resolve(__dirname, '../docs/public')
+        to: resolve(__dirname, '../dist/public')
       },
       {
         from: resolve(__dirname, '../node_modules/three/build/three.min.js'),
-        to: resolve(__dirname, '../docs')
+        to: resolve(__dirname, '../dist')
       }
     ])
   ],
   output: {
     filename: '[name].bundle.js',
-    path: resolve(__dirname, '../docs')
+    path: resolve(__dirname, '../dist')
   },
   externals: {
     three: 'THREE'

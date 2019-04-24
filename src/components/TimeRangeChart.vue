@@ -1,7 +1,7 @@
 <template>
   <div
     ref="chart"
-    calss="chart-container"
+    class="chart-container"
   />
 </template>
 

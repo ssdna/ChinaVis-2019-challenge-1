@@ -9,6 +9,8 @@
     <venue-time-chart class="chart venue-time-chart" />
     <time-range-chart class="chart time-range-chart" />
 
+    <slide class="slide" />
+
     <div class="status-bar">
       <span id="timer">{{ timeString }}</span>
       <span id="content">{{ lastPointsNumString }}</span>
@@ -27,13 +29,15 @@ import App3D from '../js/App3D'
 import VenuePersonChart from './VenuePersonChart.vue'
 import VenueTimeChart from './VenueTimeChart.vue'
 import TimeRangeChart from './TimeRangeChart.vue'
+import Slide from './Slide.vue'
 import { timeFormatter } from '../utils/util'
 
 export default {
   components: {
     'venue-person-chart': VenuePersonChart,
     'venue-time-chart': VenueTimeChart,
-    'time-range-chart': TimeRangeChart
+    'time-range-chart': TimeRangeChart,
+    'slide': Slide
   },
   data () {
     return {
@@ -97,6 +101,12 @@ export default {
 .time-range-chart {
   top: 0px;
   left: 1000px
+}
+.slide {
+  position: absolute;
+  width: 1000px;
+  bottom: 10px;
+  left: 10px;
 }
 .status-bar {
   position: absolute;

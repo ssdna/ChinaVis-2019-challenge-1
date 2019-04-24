@@ -86,6 +86,8 @@ day1:
 - vuex只管理应用状态，数据全局存放
 - 数据采用csv传输，再处理成json
 - three.js 3D场景自动动效
+- 《The Grammar of Graphics》(Leland Wilkinson 著)
+- g2 图形语法、数据处理流程、几何标记和数据调整等，以便高度自定义g2，或者自己写canvas。
 
 
 ## 想法
@@ -93,4 +95,9 @@ day1:
 - 滑块 （http://antv.alipay.com/zh-cn/g2/3.x/demo/line/line-rain-and-flow.html）
 - g2图形上的打点
 - 3D延迟线 （http://antv.alipay.com/zh-cn/l7/1.x/demo/gallery/taxi.html）
-- 各个图表与3D可视化图之间的交互
+- **各个图表与3D可视化图之间的交互**
+- 关于筛选（目的是为了进行局部分析）
+    - 时间：单个时间段（多个时间段？）、单个时间点（多个？）
+    - 人员：ID、筛选？？？
+    - 区域：楼层？房间？
+- 想好功能设计，还是很重要的！！！！
